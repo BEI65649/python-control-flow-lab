@@ -17,7 +17,7 @@ def print_greeting():
         print("Python is fun!")
 
 # Call the function
-print_greeting()
+# print_greeting()
 
 # Exercise 1: Vowel or Consonant
 #
@@ -47,7 +47,7 @@ def check_letter():
        print(f"The letter {letter} is a consonant.")
 
 # Call the function
-check_letter()
+# check_letter()
 
 # Exercise 2: Old enough to vote?
 #
@@ -80,7 +80,7 @@ def check_voting_eligibility():
     # Your control flow logic goes here
 
 # Call the function
-check_voting_eligibility()
+# check_voting_eligibility()
 
 
 # Exercise 3: Calculate Dog Years
@@ -118,7 +118,7 @@ def calculate_dog_years():
     # Your control flow logic goes here
 
 # Call the function
-calculate_dog_years()
+# calculate_dog_years()
 
 # Exercise 4: Weather Advice
 #
@@ -150,7 +150,7 @@ def weather_advice():
         print("wear light clothing")
 
 # Call the function
-weather_advice()
+# weather_advice()
     # Your control flow logic goes here
 
 # # Call the function
@@ -158,9 +158,9 @@ weather_advice()
 
 
 # Exercise 5: What's the Season?
-#
+
 # Write a Python function named `determine_season` that figures out the season based on the entered date.
-#
+
 # Requirements:
 # - The function should first prompt the user to enter the month (as three characters): "Enter the month of the year (Jan - Dec):"
 # - Then, the function should prompt the user to enter the day of the month: "Enter the day of the month:"
@@ -170,33 +170,36 @@ weather_advice()
 #      - Jun 21 - Sep 21: Summer
 #      - Sep 22 - Dec 20: Fall
 # - Print the season for the entered date in the format: "<Mmm> <dd> is in <season>."
-#
+
 # Hints:
 # - Use 'in' to check if a string is in a list or tuple.
 # - Adjust the season based on the day of the month when needed.
 # - Ensure to validate input formats and handle unexpected inputs gracefully.
 
-# def determine_season():
-#     month = input ("Enter the month (Jan-Dec)")
-#     day = int (input("Enter the day of the month: "))
+def determine_season():
+    month = input ("Enter the month (Jan-Dec)")
+    day = int (input("Enter the day of the month: "))
+    season = None
+    months = {"Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12}
+   
+    try: 
+        if (months[month] == 12 and day >= 21) or (months[month] in (1, 2)) or (months[month] == 3 and day <= 19):
+            season = "Winter" 
+        elif (months[month] == 3 and day >= 20) or (months[month] in (4, 5)) or (months[month] == 6 and day <= 20):
+            season = "Spring"
+        elif (months[month] == 6 and day >= 21) or (months[month] in (7, 8)) or (months[month] == 9 and day <= 21):
+            season = "Summer"
+        elif (months[month] == 9 and day >= 22) or (months[month] in (10, 11)) or (months[month] == 12 and day <= 20):
+            season = "Fall"
+        else:
+            print("Invalid date.")
+        print(f"{month} {day} is in {season}.")
+        return
+        
+    except ValueError:
+        print("Invalid input. Please enter a number for the day.")
     
-#     try: 
-#          if (month == 12 and day >= 21) or (month in (1, 2)) or (month == 3 and day <= 19):
-#        print(season = "Winter")  
-#          elif (month == 3 and day >= 20) or (month in (4, 5)) or (month == 6 and day <= 20):
-#         print(season = "Spring")
-#         elif (month == 6 and day >= 21) or (month in (7, 8)) or (month == 9 and day <= 21):
-#         print(season = "Summer")
-#         elif (month == 9 and day >= 22) or (month in (10, 11)) or (month == 12 and day <= 20):
-#         print(season = "Fall")
-#         else:
-#         print("Invalid date.")
-#         return
-#         print(f"{month} {day} is in {season}.")
-#     except ValueError:
-#         print("Invalid input. Please enter a number for the day.")
-    
-#     # Your control flow logic goes here
+    # Your control flow logic goes here
 
 # # Call the function
 # determine_season()
@@ -221,25 +224,22 @@ weather_advice()
 
 def guess_number():
     target = 42
-    max_guesses = 5
-    for guess in range(1, 6):
+    max_guesses = 6
+    for attempt in range(1, 6):
         try:
-
-            guess = int(input("Guess number within a range of 1 and 100"))
+            guess = int(input("Guess number within a range of 1 and 100 "))
+            if guess == target:
+                print("Congratulations, you guessed correctly!")
+                return
+            elif guess < target:
+                print("Guess is too low.")
+            else:
+                print("Guess is too high.")
+            if attempt == max_guesses:
+                print ("Last chance!")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
             continue
-
-    if guess == target:
-        print("Congratulations, you guessed correctly!")
-        return
-    elif guess < target:
-        print("Guess is too low.")
-    else:
-        print("Guess is too high.")
-    if guess == max_guesses:
-        print ("Last chance!")
-
     print("Sorry, you failed to guess the number in five attempts.")
     # Your control flow logic goes here
 
